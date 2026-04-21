@@ -1,0 +1,11 @@
+[project]
+name = "graph-rag-buddy-django"
+version = "0.1.0"
+description = "Django side of the graph_rag_buddy simulation"
+requires-python = ">=3.11"
+dependencies = [
+  "django>=5.0,<6.0",
+]
+
+[tool.uv]
+package = false
