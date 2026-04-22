@@ -16,5 +16,6 @@ fn main ()
     }
 }
 
-//Deflated -> Quasi Raw data --> Perform the injestion -->
+//Deflated -> Quasi Raw data --> Perform the ingestion -->
 
+// Where is the deflated data?

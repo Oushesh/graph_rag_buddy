@@ -14,6 +14,12 @@ pub fn deflate(path:PathBuf) -> Result<(),Box<dyn std::error::Error>> {
     //2. 2 Options here deflating the to a string (for smaller files)
     let decoder = MultiGzDecoder::new(file);
 
+    let mut output_path = path.clone();
+    output_path.set_extension(""); //changes .json.gz to .json
+
+    //3. Create the new file on disk
+    let mut out_file = File::creare(%output_path)?;
+
     /*
     let mut decoded_string = String::new();
     decoder.read_to_string(&mut,decoded_string)?;
@@ -24,7 +30,8 @@ pub fn deflate(path:PathBuf) -> Result<(),Box<dyn std::error::Error>> {
     // This avoids loading the entire uncompressed JSON into RAM at once.
     let reader = BufReader::new(decoder);
     let _json_value: serde_json::Value = serde_json::from_reader(reader).unwrap();
-
+    io::copy(&mut reader, &mut out_file)?;
+    
     println!("Successfully deflated and parsed JSON!");
     Ok(())
 }
