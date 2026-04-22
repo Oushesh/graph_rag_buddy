@@ -1,9 +1,6 @@
 # Rust
 **/target/
 
-# Generated/deflated data files (too large for GitHub)
-rust_build/data/*.json
-
 # Python
 .venv/
 __pycache__/
