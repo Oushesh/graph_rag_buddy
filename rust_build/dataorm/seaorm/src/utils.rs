@@ -3,9 +3,8 @@
 
 use flate2::read::MultiGzDecoder;
 use std::fs::File;
-use std::io::Read;
 use std::io::BufReader;
-use std::path;
+use std::path::PathBuf;
 
 //TODO: add path as argument
 pub fn deflate(path:PathBuf) -> Result<(),Box<dyn std::error::Error>> {
@@ -13,7 +12,7 @@ pub fn deflate(path:PathBuf) -> Result<(),Box<dyn std::error::Error>> {
     let file = File::open(path).unwrap();
 
     //2. 2 Options here deflating the to a string (for smaller files)
-    let mut decoder = MultiGzDecoder::new(file);
+    let decoder = MultiGzDecoder::new(file);
 
     /*
     let mut decoded_string = String::new();
@@ -24,7 +23,7 @@ pub fn deflate(path:PathBuf) -> Result<(),Box<dyn std::error::Error>> {
     //4. Option B: Stream Directly to Serde (Most efficient for 42MB+)
     // This avoids loading the entire uncompressed JSON into RAM at once.
     let reader = BufReader::new(decoder);
-    let json_value: serde_json::Value = serde_json::from_reader(reader).unwrap();
+    let _json_value: serde_json::Value = serde_json::from_reader(reader).unwrap();
 
     println!("Successfully deflated and parsed JSON!");
     Ok(())

@@ -1,4 +1,4 @@
-mod lib;
+
 mod utils;
 use std::path::PathBuf;
 
@@ -11,7 +11,7 @@ fn main ()
     // Call the deflate function from utils.rs
     match utils::deflate(data_path)
     {
-        Ok(json_value) => println!("Processing Complete, {}", json_value),
+        Ok(_json_value) => println!("Processing Complete"),
         Err(error) => panic!("Error processing file: {}", error),
     }
 }
