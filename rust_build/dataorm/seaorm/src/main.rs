@@ -11,7 +11,7 @@ fn main ()
     // Call the deflate function from utils.rs
     match utils::deflate(data_path)
     {
-        Ok(_json_value) => println!("Processing Complete"),
+        Ok(()) => println!("Processing Complete"),
         Err(error) => panic!("Error processing file: {}", error),
     }
 }
