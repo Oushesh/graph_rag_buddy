@@ -3,7 +3,7 @@
 
 use flate2::read::MultiGzDecoder;
 use std::fs::File;
-use std::io::BufReader;
+use std::io::{BufReader,copy};
 use std::path::PathBuf;
 
 //TODO: add path as argument
@@ -18,7 +18,7 @@ pub fn deflate(path:PathBuf) -> Result<(),Box<dyn std::error::Error>> {
     output_path.set_extension(""); //changes .json.gz to .json
 
     //3. Create the new file on disk
-    let mut out_file = File::creare(%output_path)?;
+    let mut out_file = File::create(output_path)?;
 
     /*
     let mut decoded_string = String::new();
@@ -30,8 +30,8 @@ pub fn deflate(path:PathBuf) -> Result<(),Box<dyn std::error::Error>> {
     // This avoids loading the entire uncompressed JSON into RAM at once.
     let reader = BufReader::new(decoder);
     let _json_value: serde_json::Value = serde_json::from_reader(reader).unwrap();
-    io::copy(&mut reader, &mut out_file)?;
-    
+    copy(&mut reader, &mut out_file)?;
+
     println!("Successfully deflated and parsed JSON!");
     Ok(())
 }
