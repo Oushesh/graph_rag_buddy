@@ -14,7 +14,6 @@ pub fn ingest_with_seaorm_stub() -> Vec<ArxivPaper> {
 #[cfg(test)]
 mod tests {
     use super::*;
-
     #[test]
     fn returns_seed_paper() {
         let papers = ingest_with_seaorm_stub();
